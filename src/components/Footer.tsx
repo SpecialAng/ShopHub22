@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, MapPin, Phone, MessageCircle } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { PageType } from '../types';
 
 interface FooterProps {
@@ -7,11 +7,6 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const handleNavigation = (e: React.MouseEvent, page: PageType) => {
-    e.preventDefault(); // Prevent default behavior that causes page jump
-    onNavigate(page);
-  };
-
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -30,7 +25,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2">
               <li>
                 <button 
-                  onClick={(e) => handleNavigation(e, 'about')}
+                  onClick={() => onNavigate('about')}
                   className="hover:text-white transition-colors"
                 >
                   About Us
@@ -38,7 +33,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button 
-                  onClick={(e) => handleNavigation(e, 'shipping')}
+                  onClick={() => onNavigate('contact')}
+                  className="hover:text-white transition-colors"
+                >
+                  Contact
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => onNavigate('shipping')}
                   className="hover:text-white transition-colors"
                 >
                   Shipping Policy
@@ -46,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button 
-                  onClick={(e) => handleNavigation(e, 'returns')}
+                  onClick={() => onNavigate('returns')}
                   className="hover:text-white transition-colors"
                 >
                   Returns & Exchanges
@@ -68,8 +71,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 +1 (555) 123-4567
               </p>
               <p className="flex items-center">
-                <MessageCircle className="h-5 w-5 mr-2" />
-                WhatsApp: +1 (555) 123-4567
+                <Mail className="h-5 w-5 mr-2" />
+                support@shophub.com
               </p>
             </div>
           </div>
