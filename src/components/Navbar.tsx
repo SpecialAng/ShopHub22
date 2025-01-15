@@ -1,75 +1,84 @@
-import React from 'react';
-import { Facebook, MessageCircleMore, Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, ShoppingBag, LogIn } from 'lucide-react';
+import { CartButton } from './CartButton';
+import { MobileMenu } from './MobileMenu';
+import { PageType } from '../types';
 
-export const Footer: React.FC = () => {
+interface NavbarProps {
+  onCartClick: () => void;
+  onNavigate: (page: PageType) => void;
+  currentPage: PageType;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({
+  onCartClick,
+  onNavigate,
+  currentPage,
+}) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* About Section */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">About ShopHub</h3>
-            <p className="text-sm">
-              ShopHub is your one-stop destination for premium products across electronics, fashion, home decor, and sports equipment. We pride ourselves on quality and customer satisfaction.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Shipping Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Returns & Exchanges</a></li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Contact Us</h3>
-            <div className="space-y-3">
-              <p className="flex items-center">
-                <MapPin className="h-5 w-5 mr-2" />
-                123 Shopping Street, NY 10001
-              </p>
-              <p className="flex items-center">
-                <Phone className="h-5 w-5 mr-2" />
-                +1 (555) 123-4567
-              </p>
-              <p className="flex items-center">
-                <Mail className="h-5 w-5 mr-2" />
-                support@shophub.com
-              </p>
+    <>
+      <nav className="bg-white shadow-lg sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="p-2 rounded-md text-gray-500 lg:hidden"
+              >
+                <Menu className="h-6 w-6" />
+              </button>
+              <button
+                onClick={() => onNavigate('home')}
+                className="flex items-center ml-2 lg:ml-0 hover:opacity-80 transition-opacity"
+              >
+                <ShoppingBag className="h-6 w-6 text-blue-600" />
+                <span className="ml-2 text-xl font-bold text-gray-800">ShopHub</span>
+              </button>
             </div>
-          </div>
-
-          {/* Social Media */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="https://www.facebook.com/profile.php?id=61570473608585&mibextid=ZbWKwL" className="hover:text-white transition-colors">
-                <Facebook className="h-6 w-6" />
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                <MessageCircleMore className="h-6 w-6" />
-              </a>
-              <a href="https://www.instagram.com/shop_hubb1" className="hover:text-white transition-colors">
-                <Instagram className="h-6 w-6" />
-              </a>
+            <div className="flex items-center">
+              <div className="hidden lg:flex space-x-8">
+                <button
+                  onClick={() => onNavigate('home')}
+                  className={`${
+                    currentPage === 'home'
+                      ? 'text-blue-600 border-b-2 border-blue-600'
+                      : 'text-gray-600 hover:text-gray-900'
+                  } transition-colors px-1 py-2`}
+                >
+                  Home
+                </button>
+                <button
+                  onClick={() => onNavigate('products')}
+                  className={`${
+                    currentPage === 'products'
+                      ? 'text-blue-600 border-b-2 border-blue-600'
+                      : 'text-gray-600 hover:text-gray-900'
+                  } transition-colors px-1 py-2`}
+                >
+                  Products
+                </button>
+              </div>
+              <div className="flex items-center ml-4 space-x-4">
+                <button
+                  onClick={() => onNavigate('login')}
+                  className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  <LogIn className="h-5 w-5" />
+                </button>
+                <CartButton onClick={onCartClick} />
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
-          <p>&copy; {new Date().getFullYear()} ShopHub. All rights reserved.</p>
-          <div className="mt-2 space-x-4">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <span>|</span>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </nav>
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        onNavigate={onNavigate}
+        currentPage={currentPage}
+      />
+    </>
   );
 };
