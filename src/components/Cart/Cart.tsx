@@ -40,7 +40,7 @@ export const Cart: React.FC<CartProps> = ({ isOpen, onClose, onNavigate }) => {
       .map(item => `• ${item.name} (${item.quantity}x)`)
       .join('\n');
     
-    const message = `Halo, saya ingin memesan:\n\n${itemsList}\n\nTotal: ${formatToRupiah(total)}\n\nData Pengiriman:\nNama: ${addressForm.name}\nTelepon: ${addressForm.phone}\nAlamat: ${addressForm.address}`;
+    const message = `Halo admin, saya ingin memesan :\n\n${itemsList}\n\nTotal: ${formatToRupiah(total)}\n\nData Pengiriman:\nNama: ${addressForm.name}\nTelepon: ${addressForm.phone}\nAlamat: ${addressForm.address}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/6281271893280?text=${encodedMessage}`;
     
