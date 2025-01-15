@@ -34,7 +34,7 @@ export const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     
     const message = `Halo, saya ingin memesan:\n\n${itemsList}\n\nTotal: ${formatToRupiah(total)}\n\nData Pengiriman:\nNama: ${addressForm.name}\nTelepon: ${addressForm.phone}\nAlamat: ${addressForm.address}`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/6282271893280?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/6281271893280?text=${encodedMessage}`;
     
     window.open(whatsappUrl, '_blank');
     dispatch({ type: 'CLEAR_CART' });
