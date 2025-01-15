@@ -1,12 +1,7 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, Mail, MapPin, Phone } from 'lucide-react';
-import { PageType } from '../types';
+import { Facebook, MessageCircleMore, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 
-interface FooterProps {
-  onNavigate: (page: PageType) => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -23,38 +18,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li>
-                <button 
-                  onClick={() => onNavigate('about')}
-                  className="hover:text-white transition-colors"
-                >
-                  About Us
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('contact')}
-                  className="hover:text-white transition-colors"
-                >
-                  Contact
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('shipping')}
-                  className="hover:text-white transition-colors"
-                >
-                  Shipping Policy
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('returns')}
-                  className="hover:text-white transition-colors"
-                >
-                  Returns & Exchanges
-                </button>
-              </li>
+              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Shipping Policy</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Returns & Exchanges</a></li>
             </ul>
           </div>
 
@@ -81,13 +48,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61570473608585&mibextid=ZbWKwL" className="hover:text-white transition-colors">
                 <Facebook className="h-6 w-6" />
               </a>
               <a href="#" className="hover:text-white transition-colors">
-                <Twitter className="h-6 w-6" />
+                <MessageCircleMore className="h-6 w-6" />
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="https://www.instagram.com/shop_hubb1" className="hover:text-white transition-colors">
                 <Instagram className="h-6 w-6" />
               </a>
             </div>
@@ -96,6 +63,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
           <p>&copy; {new Date().getFullYear()} ShopHub. All rights reserved.</p>
+          <div className="mt-2 space-x-4">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <span>|</span>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          </div>
         </div>
       </div>
     </footer>
